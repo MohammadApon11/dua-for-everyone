@@ -1,7 +1,7 @@
 "use client";
 import Settings from "@/components/Settings/Settings";
 import MainWrapper from "@/components/mainContent/MainWrapper";
-import SideNave from "@/components/sideNav/SideNave";
+import SideNav from "@/components/sideNav/SideNav";
 import { useState } from "react";
 
 const Home = () => {
@@ -11,12 +11,13 @@ const Home = () => {
     setIsShow(!isShow);
     console.log("clieck");
   };
+
   return (
-    <div>
-      <div className="px-10 pt-10 pb-0 flex gap-[33px] fixed w-[100vw]">
-        <div className="">
-          <SideNave />
-        </div>
+    <div className="px-5 pt-4 pb-0 grid grid-cols-12 gap-[33px] fixed w-[100vw]">
+      <div className="col-span-1 overflow-y-auto">
+        <SideNav />
+      </div>
+      <div className="col-span-11">
         <div className="">
           <MainWrapper handleIsShow={handleIsShow} />
         </div>
