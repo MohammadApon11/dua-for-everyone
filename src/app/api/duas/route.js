@@ -8,6 +8,7 @@ let db = null;
 // Define the GET function for handling HTTP GET requests
 export async function GET(req, res) {
   // Check if the database is not yet initialized
+
   if (!db) {
     // If not initialized, open the SQLite database
     db = await open({

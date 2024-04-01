@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
+import "./range.css";
+import Image from "next/image";
 
 const SingleDua = ({ dua, index }) => {
   // destructure dua need property
@@ -16,6 +18,59 @@ const SingleDua = ({ dua, index }) => {
     translation_en,
     transliteration_en,
   } = dua || {};
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef(null);
+  const [show, setShow] = useState(false);
+  const [disableEndedBtn, setDisableEndedBtn] = useState(false);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef?.current?.play();
+    } else {
+      audioRef?.current?.pause();
+    }
+  }, [isPlaying]);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+    setShow(!show);
+  };
+
+  const updateTime = () => {
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  const updateDuration = () => {
+    setDuration(audioRef.current.duration);
+  };
+
+  const handleChange = (e) => {
+    const newTime = e.target.value;
+    setCurrentTime(newTime);
+    audioRef.current.currentTime = newTime;
+  };
+
+  const handleAutoPlay = () => {
+    setIsPlaying(true);
+    setDisableEndedBtn(!disableEndedBtn);
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
+  };
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setShow(false);
+  };
+
   return (
     <div id={dua_id} className="bg-white rounded-[10px] mb-5">
       <div className="p-6">
@@ -72,23 +127,59 @@ const SingleDua = ({ dua, index }) => {
         </div>
       </div>
 
-      <div className="flex flex-row items-center justify-between px-6">
-        <div className="py-4 flex flex-row items-center xs:w-full xs:gap-x-4">
-          <audio src={audio}></audio>
-          <div className="flex flex-row items-center gap-x-3 xs:w-full">
-            <img className="cursor-pointer" src="/dua/audio.svg" alt="" />
-            <input
-              className="hidden"
-              type="range"
-              min="0"
-              max="0"
-              style={{ backgroundSize: "0% 100%" }}
-            />
+      <div
+        className={`flex flex-row items-center px-6 ${
+          audio ? "justify-between" : "justify-end"
+        }`}
+      >
+        {audio && (
+          <div className="py-4 flex flex-row items-center xs:w-full xs:gap-x-4">
+            <audio
+              loop={disableEndedBtn}
+              ref={audioRef}
+              src={audio}
+              onTimeUpdate={updateTime}
+              onLoadedMetadata={updateDuration}
+              onEnded={() => {
+                if (disableEndedBtn) {
+                  console.log("Audio ended!");
+                } else {
+                  handleEnded();
+                }
+              }}
+            ></audio>
+            <div className="flex flex-row items-center gap-x-3 xs:w-full">
+              <img
+                onClick={togglePlay}
+                className="cursor-pointer"
+                src={isPlaying ? "/dua/pause.svg" : "/dua/audio.svg"}
+                alt=""
+              />{" "}
+              <div className={`flex items-center gap-6 ${show ? "block" : "hidden"}`}>
+                <div className="range_container">
+                  <input
+                    className="range"
+                    type="range"
+                    value={currentTime}
+                    max={duration}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </div>
+                <Image
+                className={`cursor-pointer ${!disableEndedBtn && "opacity-60"}`}
+                  src="/dua/suffle.svg"
+                  width={30}
+                  height={20}
+                  onClick={handleAutoPlay}
+                  alt="Suffle"
+                />
+              </div>
+            </div>
           </div>
-          <div className="hidden">
-            <p className="ml-2 text-mute-grey-200 text-sm ">00:00</p>
-          </div>
-        </div>
+        )}
         <div className="flex items-center text-left flex-row justify-between py-6 gap-x-8 xs:gap-x-6">
           <div
             id="copy"

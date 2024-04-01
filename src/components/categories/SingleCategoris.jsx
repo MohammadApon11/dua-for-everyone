@@ -2,39 +2,29 @@
 import React, { useEffect, useState } from "react";
 import SubCategories from "../subCategories/SubCategories";
 import { useCatId } from "@/provider/CatIdProvider";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import getSubCategories from "@/hooks/getSubCategories";
 
 const SingleCategoris = ({ category }) => {
-  // State variables for categories and filter text
   const [subCategories, setSubCategories] = useState([]);
+  const { cat_name_en, no_of_subcat, no_of_dua, cat_id } = category;
+  const { catId, setCatId } = useCatId() || {};
+  const [loadingData, setLoadingData] = useState(true);
 
-  // useEffect call for each subCategory
+  const isOpen = cat_id === catId;
   useEffect(() => {
-    // Call getSubCategories and handle the resolved promise
-    getSubCategories().then((subCategories) => {
-      // Do something with the fetched subcategories
-      setSubCategories(subCategories);
+    getSubCategories().then((data) => {
+      setSubCategories(data?.subcategories);
+      setLoadingData(data?.loading);
     });
   }, []);
 
-  // Destructure values from the 'category' object
-const { cat_name_en, no_of_subcat, no_of_dua, cat_id } = category;
+  const handleOpen = () => {
+    setCatId(cat_id);
+  };
 
-// Destructure values from the custom hook 'useCatId' or initialize an empty object
-const { catId, setCatId } = useCatId() || {};
-
-// Check if the current category is open based on the comparison of 'cat_id' and 'catId'
-const isOpen = cat_id === catId;
-
-// Define a function to handle opening the current category
-const handleOpen = () => {
-  setCatId(cat_id);
-};
-
-// Filter subcategories based on the current category id ('cat_id')
-const filteredSubCategories = subCategories.filter((c) => c.cat_id === cat_id);
+  const filteredSubCategories = subCategories.filter(
+    (c) => c.cat_id === cat_id
+  );
 
   return (
     <>
@@ -48,14 +38,14 @@ const filteredSubCategories = subCategories.filter((c) => c.cat_id === cat_id);
         >
           <div className="flex items-center gap-2">
             <div className="p-[10px] bg-[#CFE0E5] rounded-[10px] flex items-center justify-center">
-              <img src="/category/category_icon.png" alt="" />
+              <img src={`/category/${category?.cat_icon}.svg`} alt="" />
             </div>
             <div>
               <span className="text-[16px] block font-semibold">
-                {cat_name_en || <Skeleton />}
+                {cat_name_en}
               </span>
               <span className="text-[#7E7E7E] text-[14px]">
-                Subcategory: {no_of_subcat || <Skeleton />}
+                Subcategory: {no_of_subcat}
               </span>
             </div>
           </div>

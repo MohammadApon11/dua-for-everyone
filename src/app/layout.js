@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CatIdProvider } from "@/provider/CatIdProvider";
 import { Toaster } from "react-hot-toast";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[#ebeef2] relative`}>
-        <CatIdProvider>{children}</CatIdProvider>
+        <SkeletonTheme baseColor="#d7d8db" highlightColor="#b1b2b5">
+          <CatIdProvider>{children}</CatIdProvider>
+        </SkeletonTheme>
         <Toaster position="bottom-center" reverseOrder={true} />
       </body>
     </html>
