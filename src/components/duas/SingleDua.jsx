@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import "./range.css";
 import Image from "next/image";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const SingleDua = ({ dua, index }) => {
+const SingleDua = ({ dua, index, handleModalOpen, bookmarks }) => {
   // destructure dua need property
   const {
     dua_name_en,
@@ -18,7 +19,8 @@ const SingleDua = ({ dua, index }) => {
     translation_en,
     transliteration_en,
   } = dua || {};
-
+  const includesIdOne = bookmarks.some((bookmark) => bookmark.id === dua_id);
+  console.log("includesIdOne", includesIdOne);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -155,7 +157,11 @@ const SingleDua = ({ dua, index }) => {
                 src={isPlaying ? "/dua/pause.svg" : "/dua/audio.svg"}
                 alt=""
               />{" "}
-              <div className={`flex items-center gap-6 ${show ? "block" : "hidden"}`}>
+              <div
+                className={`flex items-center gap-6 ${
+                  show ? "block" : "hidden"
+                }`}
+              >
                 <div className="range_container">
                   <input
                     className="range"
@@ -169,7 +175,9 @@ const SingleDua = ({ dua, index }) => {
                   {formatTime(currentTime)} / {formatTime(duration)}
                 </div>
                 <Image
-                className={`cursor-pointer ${!disableEndedBtn && "opacity-60"}`}
+                  className={`cursor-pointer ${
+                    !disableEndedBtn && "opacity-60"
+                  }`}
                   src="/dua/suffle.svg"
                   width={30}
                   height={20}
@@ -181,17 +189,24 @@ const SingleDua = ({ dua, index }) => {
           </div>
         )}
         <div className="flex items-center text-left flex-row justify-between py-6 gap-x-8 xs:gap-x-6">
-          <div
-            id="copy"
-            onClick={() =>
-              toast.success("Copeid!", {
-                style: { backgrouColor: "black" },
-                className: " h-[70px] flex text-left",
-              })
-            }
-            className="relative w-6"
-          >
-            <img className="cursor-pointer" src="/dua/copy.png" alt="copy" />
+          <div id="copy" className="relative w-6">
+            <CopyToClipboard
+              text={[
+                `${parseInt(
+                  index + 1
+                )}. ${top_en} \n\n${clean_arabic}\n${transliteration_en}\n\n${translation_en}\n${refference_en}\n\nCopied From:\nDua & Ruqyah (Hisnul Muslim)\nwww.duaruqyah.com/dua/8`,
+              ]}
+              onCopy={() =>
+                toast.success("Copeid!", {
+                  style: {
+                    background: "black",
+                    color: "#ffffff",
+                  },
+                })
+              }
+            >
+              <img className="cursor-pointer" src="/dua/copy.png" alt="copy" />
+            </CopyToClipboard>
             <div id="copy_show" className="absolute -top-10 -right-3">
               <div className="relative">
                 <p className="bg-black  text-sm px-2 py-1 rounded-md text-white">
@@ -205,18 +220,15 @@ const SingleDua = ({ dua, index }) => {
               </div>
             </div>
           </div>
+
           <div id="bookmark" className="relative w-6">
             <img
-              onClick={() =>
-                toast.success("Comming Soon In sha llah!", {
-                  position: "top-right",
-                  className: "w-[260px] h-[70px] flex text-left",
-                })
-              }
+              onClick={() => handleModalOpen(dua_id)}
               className="cursor-pointer"
-              src="/dua/bookmarks.png"
+              src={includesIdOne ? "/dua/bookmark.svg" : "/dua/bookmark.png"}
               alt="bookmark"
             />
+
             <div id="bookmark_show" className="absolute -top-10 -right-3">
               <div className="relative">
                 <p className="bg-black  text-sm px-2 py-1 rounded-md text-white">
@@ -230,6 +242,7 @@ const SingleDua = ({ dua, index }) => {
               </div>
             </div>
           </div>
+
           <div id="plan" className="relative w-6">
             <img
               onClick={() =>
