@@ -24,3 +24,34 @@ export const colorData = [
     className: "bg-teal-500",
   },
 ];
+
+export const settingsData = [
+  {
+    icon: "/settings/support.svg",
+    name: "Support Us",
+  },
+  {
+    icon: "/settings/download.svg",
+    name: "Download Dua App",
+  },
+  {
+    icon: "/settings/privacy.svg",
+    name: "Privacy Policy",
+  },
+  {
+    icon: "/settings/credit.svg",
+    name: "Thanks & Credits",
+  },
+  {
+    icon: "/settings/about.svg",
+    name: "About Us",
+  },
+  {
+    icon: "/settings/copyright.svg",
+    name: "Copyright Warning",
+  },
+  {
+    icon: "/settings/projects.svg",
+    name: "Our Other Projects",
+  },
+];

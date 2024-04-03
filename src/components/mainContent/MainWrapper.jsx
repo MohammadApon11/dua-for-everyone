@@ -10,7 +10,7 @@ const MainWrapper = ({ handleIsShow }) => {
       <div className="col-span-6">
         <Header handleIsShow={handleIsShow} />
       </div>
-      <div className="col-span-6 mt-[27px] flex gap-[33px]">
+      <div className="col-span-6 mt-[27px] flex xl:gap-[33px] gap-5 max-xl:px-5">
         <div className="w-[320px] bg-white overflow-x-hidden h-[80vh] rounded-[10px] overflow-y-auto border-[0.5px] p-0 border-[#E2E2E2]">
           <Categories />
         </div>
@@ -21,7 +21,7 @@ const MainWrapper = ({ handleIsShow }) => {
 
         <div
           id="setting_1"
-          className="w-[227px] bg-white rounded-[32px] h-[80vh] overflow-y-auto border-[0.5px] border-[rgb(226,226,226)]"
+          className=" bg-white rounded-[32px] h-[80vh] overflow-hidden border-[0.5px] border-[rgb(226,226,226)] 2xl:block hidden"
         >
           <Settings />
         </div>

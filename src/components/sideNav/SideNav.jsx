@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import "./SideNav.css";
 
 const SideNav = () => {
   return (
-    <>
+    <div className="xl:block hidden">
       <div className="w-[110px] flex items-center justify-center bg-white rounded-3xl overflow-y-auto">
         <div className="flex flex-col items-center h-[95vh]">
           <div>
@@ -66,7 +67,7 @@ const SideNav = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
