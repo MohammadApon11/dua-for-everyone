@@ -131,7 +131,7 @@ const SingleDua = ({ dua, index, handleModalOpen, bookmarks }) => {
       </div>
 
       <div
-        className={`flex flex-row items-center px-6 ${
+        className={`flex md:flex-row flex-col items-center px-6 ${
           audio ? "justify-between" : "justify-end"
         }`}
       >
@@ -189,13 +189,13 @@ const SingleDua = ({ dua, index, handleModalOpen, bookmarks }) => {
             </div>
           </div>
         )}
-        <div className="flex items-center text-left flex-row justify-between py-6 sm:gap-x-8 gap-x-2">
+        <div className="flex items-center text-left flex-row justify-between py-6 sm:gap-x-8 gap-x-4">
           <div id="copy" className="relative w-6">
             <CopyToClipboard
               text={[
                 `${parseInt(
                   index + 1
-                )}. ${top_en} \n\n${clean_arabic}\n${transliteration_en}\n\n${translation_en}\n${refference_en}\n\nCopied From:\nDua & Ruqyah (Hisnul Muslim)\nwww.duaruqyah.com/dua/8`,
+                )}. ${top_en} \n\n${clean_arabic}\n${transliteration_en}\n\n${translation_en}\n${refference_en}\n\nCopied From:\nDua & Ruqyah (Hisnul Muslim)\nhttps:/dua-for-everyone.vercel.app/${dua_id}`,
               ]}
               onCopy={() =>
                 toast.success("Copeid!", {

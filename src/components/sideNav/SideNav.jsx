@@ -1,19 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import "./SideNav.css";
+import Image from "next/image";
 
 const SideNav = () => {
   return (
     <div className="xl:block hidden">
       <div className="w-[110px] flex items-center justify-center bg-white rounded-3xl overflow-y-auto">
         <div className="flex flex-col items-center h-[95vh]">
-          <div>
+          <div className="mt-[20px] mb-[40px]">
             <Link href="/">
-              <img
-                className="pt-[20px] pb-[50px]"
-                src="/sideNav/img1.png"
-                alt="Dua_Logo"
-              />
+              <img className="" src="/sideNav/img1.png" alt="Dua_Logo" />
             </Link>
           </div>
           <div className="flex flex-col gap-[27px]">
@@ -61,7 +58,7 @@ const SideNav = () => {
             </Link>
           </div>
           <img
-            className="pb-[31px] pt-[50px] cursor-pointer"
+            className="mb-[31px] mt-[40px] cursor-pointer"
             src="/sideNav/img9.png"
             alt="Support"
           />

@@ -77,7 +77,7 @@ const Duas = ({ subCategory }) => {
       // If the bookmark doesn't exist, add it to the array and store it in localStorage
       bookmarks.push(data);
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-      toast.success("Bookmark saved successfully!");
+      toast.success("saved in local storage!");
       setReload(!reload);
     }
     setFolderName("");

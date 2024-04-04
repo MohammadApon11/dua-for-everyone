@@ -75,7 +75,7 @@ const Settings = () => {
               <div className="">
                 <div className="cursor-pointer">
                   <div className="bg-[#F7F8FA] flex flex-row w-full rounded-lg ">
-                    <div className=" w-1 rounded-tl-lg rounded-bl-lg"></div>
+                    <div className="w-1 rounded-tl-lg rounded-bl-lg"></div>
                     <div className="p-2 flex flex-row items-center w-full">
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/menu.png" alt="font" />
@@ -92,7 +92,7 @@ const Settings = () => {
               <div className="">
                 <div className="cursor-pointer">
                   <div className="bg-[#F7F8FA] flex flex-row w-full rounded-lg ">
-                    <div className=" w-1 rounded-tl-lg rounded-bl-lg"></div>
+                    <div className="w-1 rounded-tl-lg rounded-bl-lg"></div>
                     <div className="p-2 flex flex-row items-center w-full">
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/menu-2.png " alt="font" />
