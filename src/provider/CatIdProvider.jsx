@@ -1,4 +1,4 @@
-"use client"
+"use client";
 // Import React and necessary hooks from the 'react' library
 import React, { createContext, useContext, useState } from "react";
 

@@ -20,7 +20,7 @@ const MainWrapper = () => {
             onClick={handleCategoriesShow}
             className="text-2xl cursor-pointer"
           />
-          <p className="text-gray-600 ">Dua's importance</p>
+          <p className="text-gray-600 ">Dua&apos;s importance</p>
         </div>
       </div>
       <div className="col-span-6 lg:mt-[27px] flex xl:gap-[33px] gap-4 max-xl:px-5">
