@@ -13,17 +13,17 @@ const MainWrapper = () => {
   useEffect(() => {
     const handleScroll = () => {
       const button = document.getElementById("goToTopBtn");
-      if (containerRef.current.scrollTop > 20) {
+      if (containerRef?.current?.scrollTop > 20) {
         button.style.display = "block";
       } else {
         button.style.display = "none";
       }
     };
 
-    containerRef.current.addEventListener("scroll", handleScroll);
+    containerRef?.current?.addEventListener("scroll", handleScroll);
 
     return () => {
-      containerRef.current.removeEventListener("scroll", handleScroll);
+      containerRef?.current?.removeEventListener("scroll", handleScroll);
     };
   }, []);
   const { isCategoriesShow, handleCategoriesShow } = useUtilsProvider();

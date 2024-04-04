@@ -105,6 +105,14 @@ const Settings = () => {
                 </div>
               </div>
             </div>
+            <div className="mx-6 my-5 flex items-center justify-between">
+              <p>Night Mode</p>
+              <input
+                type="checkbox"
+                className="toggle [--tglbg:gray] bg-gray-300 hover:bg-gray-400 border-gray-300"
+                checked
+              />
+            </div>
           </div>
         </div>
       </div>

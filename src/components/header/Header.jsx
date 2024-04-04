@@ -67,7 +67,7 @@ const Header = () => {
           </div>
           <img
             onClick={() => handleSettingShow()}
-            className="cursor-pointer xl:max-2xl:block hidden"
+            className="cursor-pointer setting_icon"
             src="/header/settings.svg"
             alt=""
           />
