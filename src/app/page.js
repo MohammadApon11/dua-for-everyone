@@ -1,4 +1,5 @@
 "use client";
+import GoToTop from "@/components/GoToTop/GoToTop";
 import Settings from "@/components/Settings/Settings";
 import MainWrapper from "@/components/mainContent/MainWrapper";
 import SideNav from "@/components/sideNav/SideNav";
@@ -8,12 +9,9 @@ import Link from "next/link";
 const Home = () => {
   const {
     isSettingShow,
-    isCategoriesShow,
-    handleSettingShow,
-    handleCategoriesShow,
   } = useUtilsProvider();
   return (
-    <div className="max-xl:relative">
+    <div className="relative">
       <div className="xl:px-6 pb-0 flex xl:gap-[33px] fixed w-full">
         <div className="xl:pt-4">
           <SideNav />
@@ -54,6 +52,7 @@ const Home = () => {
         </div>
         <div className="xl:pt-4">
           <MainWrapper />
+        
         </div>
         <div
           className={`overflow-y-auto absolute transition-all duration-300 ${

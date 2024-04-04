@@ -5,8 +5,27 @@ import "./MainWrapper.css";
 import Dua from "../duas/Dua";
 import { useUtilsProvider } from "@/context/UtilsProvider";
 import { HiBars3 } from "react-icons/hi2";
+import GoToTop from "../GoToTop/GoToTop";
+import { useEffect, useRef } from "react";
 
 const MainWrapper = () => {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const handleScroll = () => {
+      const button = document.getElementById("goToTopBtn");
+      if (containerRef.current.scrollTop > 20) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    };
+
+    containerRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      containerRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const { isCategoriesShow, handleCategoriesShow } = useUtilsProvider();
 
   return (
@@ -32,8 +51,14 @@ const MainWrapper = () => {
           <Categories />
         </div>
 
-        <div className="h-[100vh] scroll-smooth flex-1 overflow-y-auto">
-          <Dua />
+        <div
+          ref={containerRef}
+          className="h-[100vh] scroll-smooth flex-1 overflow-y-auto"
+        >
+          <Dua />{" "}
+          <div className="absolute right-12 top-[83vh] max-lg:block hidden">
+            <GoToTop containerRef={containerRef} />
+          </div>
         </div>
 
         <div

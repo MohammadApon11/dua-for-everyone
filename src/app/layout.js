@@ -18,7 +18,7 @@ const RootLayout = ({ children }) => {
       <body className={`${inter.className} bg-[#ebeef2] relative`}>
         <UtilsProvider>
           <SkeletonTheme baseColor="#d7d8db" highlightColor="#b1b2b5">
-            <CatIdProvider>{children}</CatIdProvider>
+            <CatIdProvider>{children} </CatIdProvider>
           </SkeletonTheme>
         </UtilsProvider>
         <Toaster position="bottom-center" reverseOrder={true} />
