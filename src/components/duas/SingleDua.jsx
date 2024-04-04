@@ -68,6 +68,7 @@ const SingleDua = ({ dua, index, handleModalOpen, bookmarks }) => {
       "0"
     )}`;
   };
+
   const handleEnded = () => {
     setIsPlaying(false);
     setShow(false);
@@ -188,7 +189,7 @@ const SingleDua = ({ dua, index, handleModalOpen, bookmarks }) => {
             </div>
           </div>
         )}
-        <div className="flex items-center text-left flex-row justify-between py-6 gap-x-8 xs:gap-x-6">
+        <div className="flex items-center text-left flex-row justify-between py-6 sm:gap-x-8 gap-x-2">
           <div id="copy" className="relative w-6">
             <CopyToClipboard
               text={[

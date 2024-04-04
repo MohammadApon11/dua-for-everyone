@@ -3,15 +3,32 @@ import Categories from "../categories/Categories";
 import Settings from "../Settings/Settings";
 import "./MainWrapper.css";
 import Dua from "../duas/Dua";
+import { useUtilsProvider } from "@/context/UtilsProvider";
+import { HiBars3 } from "react-icons/hi2";
 
-const MainWrapper = ({ handleIsShow }) => {
+const MainWrapper = () => {
+  const { isCategoriesShow, handleCategoriesShow } = useUtilsProvider();
+
   return (
-    <div className="grid grid-cols-6">
+    <div className="grid grid-cols-6 max-lg:relative">
       <div className="col-span-6">
-        <Header handleIsShow={handleIsShow} />
+        <Header />
       </div>
-      <div className="col-span-6 mt-[27px] flex xl:gap-[33px] gap-5 max-xl:px-5">
-        <div className="w-[320px] bg-white overflow-x-hidden h-[80vh] rounded-[10px] overflow-y-auto border-[0.5px] p-0 border-[#E2E2E2]">
+      <div className="col-span-6 w-full my-5 max-lg:block hidden">
+        <div className="px-5 bg-white mx-5 rounded-xl py-4 flex items-center gap-2">
+          <HiBars3
+            onClick={handleCategoriesShow}
+            className="text-2xl cursor-pointer"
+          />
+          <p className="text-gray-600 ">Dua's importance</p>
+        </div>
+      </div>
+      <div className="col-span-6 lg:mt-[27px] flex xl:gap-[33px] gap-4 max-xl:px-5">
+        <div
+          className={`sm:w-[320px] w-[100vw] bg-white overflow-x-hidden lg:h-[80vh] h-[100vh] rounded-[10px] overflow-y-auto border-[0.5px] p-0 border-[#E2E2E2] max-lg:absolute lg:block transition-all duration-300 ${
+            isCategoriesShow ? "left-0 top-0" : "-left-[220%] top-0"
+          }`}
+        >
           <Categories />
         </div>
 

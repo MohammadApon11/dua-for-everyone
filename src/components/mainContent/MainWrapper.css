@@ -1,9 +1,9 @@
 #setting_2 {
   display: none;
 }
-#hide_for_lg{
-    display: none;
-}
+/* #hide_for_lg {
+  display: none;
+} */
 
 @media only screen and (max-width: 1639px) and (min-width: 1137px) {
   #setting_1 {
@@ -21,7 +21,7 @@
     right: 0;
     transition: right 0.3s, position 0.3s;
   }
-  #hide_for_lg{
+  #hide_for_lg {
     display: block;
   }
 }

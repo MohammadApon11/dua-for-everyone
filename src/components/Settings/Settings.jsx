@@ -1,25 +1,28 @@
+import { useUtilsProvider } from "@/context/UtilsProvider";
 import React from "react";
-import { HiOutlineXMark } from "react-icons/hi";
 
-const Settings = ({ handleIsShow }) => {
+const Settings = () => {
+  const { handleSettingShow } = useUtilsProvider();
   return (
     <>
-      <div className="overflow-hidden w-full">
-        <div className="bg-white w-full h-[85.5vh] rounded-3xl pb-16 md:rounded-l-3xl md:rounded-r-none lg:h-screen lg:rounded-l-3xl lg:rounded-r-none xl:h-screen xl:rounded-l-3xl xl:rounded-r-none 2xl:w-full 3xl:w-full">
+      <div className="overflow-y-hidden w-full">
+        <div className="bg-white w-full md:h-[85.5vh] h-[100vh]pb-16   lg:h-screen  xl:h-screen 2xl:w-full 3xl:w-full">
           <div
-            className="pt-9 pb-6 sm:pt-0
+            className="xl:pt-9 md:pt-5 xl:pb-6 md:pb-2 pt-3
         "
           >
-            <p className="text-center text-xl  xs:hidden sm:hidden">Settings</p>
+            <p className="text-center text-xl">Settings</p>
           </div>
-          <div className="flex items-center justify-end ">
-            <button
-              onClick={() => handleIsShow()}
-              id="hide_for_lg"
-              className="text-[#1FA45B] cursor-pointer text-[30px] mr-4 pt-[-20px] font-bold"
-            >
-              ❎
-            </button>
+          <div className="2xl:hidden block">
+            <div className="flex items-center justify-end">
+              <button
+                onClick={() => handleSettingShow()}
+                id="hide_for_lg"
+                className="text-[#1FA45B] cursor-pointer text-[30px] mr-4 pt-[-20px] font-bold"
+              >
+                ❎
+              </button>
+            </div>
           </div>
           <div className="sm:pb-4 w-full">
             <div className="mx-3 my-4">
@@ -31,7 +34,7 @@ const Settings = ({ handleIsShow }) => {
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/language.png " alt="language" />
                       </div>
-                      <p className="font-medium  text-start text-base leading-5 xs:text-sm  ">
+                      <p className="font-medium  text-start text-base leading-5">
                         Language Settings
                       </p>
                     </div>
@@ -40,10 +43,10 @@ const Settings = ({ handleIsShow }) => {
                 <div className="">
                   <div className="py-6 rounded-b-lg">
                     <div className="flex flex-row gap-x-3 mx-4 justify-center">
-                      <button className="bg-[#1FA45B] text-white rounded-md   w-29 h-10 text-ms xs:w-full sm:w-full">
+                      <button className="bg-[#1FA45B] text-white rounded-md w-29 h-10 text-sm w-full sm:w-full">
                         English
                       </button>
-                      <button className=" text-black border border-solid border-[#cccdcf] rounded-md w-29 h-10 text-ms xs:w-full sm:w-full">
+                      <button className=" text-black border border-solid border-[#cccdcf] rounded-md w-29 h-10 text-sm w-full sm:w-full">
                         বাংলা
                       </button>
                     </div>
@@ -60,7 +63,7 @@ const Settings = ({ handleIsShow }) => {
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/general.png " alt="general" />
                       </div>
-                      <p className="text-mute-grey-200   text-start text-base leading-5 xs:text-sm  ">
+                      <p className="text-mute-grey-200   text-start text-base leading-5">
                         General Settings
                       </p>
                     </div>
@@ -77,7 +80,7 @@ const Settings = ({ handleIsShow }) => {
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/menu.png" alt="font" />
                       </div>
-                      <p className="text-mute-grey-200   text-start text-base leading-5 xs:text-sm  ">
+                      <p className="text-mute-grey-200   text-start text-base leading-5 ">
                         Font Settings
                       </p>
                     </div>
@@ -94,7 +97,7 @@ const Settings = ({ handleIsShow }) => {
                       <div className="bg-[#E8F0F5] flex p-2 items-center rounded-full mr-5 justify-center  ">
                         <img src="/settings/menu-2.png " alt="font" />
                       </div>
-                      <p className="text-[#1FA45B] text-start text-base leading-5 xs:text-sm  ">
+                      <p className="text-[#1FA45B] text-start text-base leading-5 ">
                         Appearance Settings
                       </p>
                     </div>

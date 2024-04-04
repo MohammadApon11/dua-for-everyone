@@ -1,4 +1,4 @@
-// "use client";
+
 import { useCatId } from "@/provider/CatIdProvider";
 import React, { useEffect, useState } from "react";
 import Duas from "./Duas";
